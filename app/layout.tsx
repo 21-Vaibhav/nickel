@@ -1,5 +1,9 @@
 import { PropsWithChildren } from "react";
 import { Metadata } from "next";
+import "./globals.css";
+import { Theme } from "@radix-ui/themes";
+import { ThemeProvider } from "@/components/ThemeProvider";
+
 
 
 const metadata: Metadata = {
@@ -9,10 +13,13 @@ const metadata: Metadata = {
 
 const RootLayout = ( props: PropsWithChildren ) => {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
-        <h1>Root Layout</h1>
-        {props.children}
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <Theme accentColor="indigo">
+            {props.children}
+          </Theme>
+        </ThemeProvider>
       </body>
     </html>
   );
